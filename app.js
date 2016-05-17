@@ -26,9 +26,14 @@ io.on('connection', function(socket) {
         io.emit('chatResult', result);
     });
 
+    socket.on('setTyping', function(result) {
+      io.emit('typing', result);
+    });
+
     socket.on('disconnect', function() {
         console.log('user disconnected');
     });
+
 });
 
 http.listen(3000, function() {
