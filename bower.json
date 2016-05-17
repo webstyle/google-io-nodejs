@@ -1,0 +1,26 @@
+{
+  "name": "google-io",
+  "description": "Google IO IUT Extended",
+  "main": "app.js",
+  "authors": [
+    "Farrukh Mamatkhalilov"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "nodejs",
+    "google-io",
+    "iut"
+  ],
+  "homepage": "https://github.com/WebStyle/google-io-nodejs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "socket.io": "^1.4.6",
+    "bootstrap": "^3.3.6"
+  }
+}
