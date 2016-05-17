@@ -1,0 +1,10 @@
+.sender {
+  position: fixed;
+  z-index: 10000;
+  bottom: 10px;
+  padding: 20px;
+}
+
+textarea[name=message] {
+    resize: none;
+}
