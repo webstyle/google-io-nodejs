@@ -17,7 +17,15 @@ app.get('/chat', function(req, res) {
 
 // Sockets
 io.on('connection', function(socket) {
-    console.log('a user connected');
+
+    socket.on('chatMessage', function(result) {
+        console.log('=================================');
+        console.log('NEW MESSAGE!!');
+        console.log(result.username + ': ' + result.message);
+        console.log('=================================');
+        io.emit('chatResult', result);
+    });
+
     socket.on('disconnect', function() {
         console.log('user disconnected');
     });

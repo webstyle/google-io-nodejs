@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>Google I/O Chat Application with Node.js, Express, Socket.io</title>
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" media="screen" charset="utf-8">
@@ -22,23 +23,27 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container main">
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>
+                    <ul id="messges" class="list-unstyled">
 
+                    </ul>
                 </p>
             </div>
         </div>
     </div>
 
     <div class="sender">
-        <div class="input-group">
-            <textarea name="message" class="form-control" rows="2"></textarea>
-            <span class="input-group-btn">
-                <button class="btn btn-primary btn-lg" type="submit"><strong><i class="fa fa-paper-plane-o"></i> Send</button>
-            </span>
-        </div>
+        <form class="container">
+            <div class="input-group">
+                <input placeholder="Send message" id="form" name="message" class="form-control" />
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" id="send" type="submit"><strong><i class="fa fa-paper-plane-o"></i> Send</button>
+              </span>
+            </div>
+        </form>
     </div>
 
     <script src="/jquery/dist/jquery.min.js" charset="utf-8"></script>

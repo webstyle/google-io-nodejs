@@ -5,6 +5,10 @@
   padding: 20px;
 }
 
+.main {
+  margin-bottom: 70px;
+}
+
 textarea[name=message] {
     resize: none;
 }
