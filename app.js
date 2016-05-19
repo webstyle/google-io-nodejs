@@ -10,6 +10,8 @@ var uuid = require('node-uuid');
 // Models
 var Messages = require('./models/messages');
 
+var Users = [];
+
 //mongodb connection
 mongoose.connect('mongodb://localhost:27017/test');
 
@@ -39,7 +41,22 @@ app.get('/chat', function(req, res) {
 // Sockets
 io.on('connection', function(socket) {
 
+    // new User
+    socket.on('newUser', function(username) {
+
+        var newUser = {
+            id: uuid.v4(),
+            name: username
+        }
+        socket.userData = newUser;
+
+        io.emit('newUserId', newUser);
+    });
+
+
     socket.on('chatMessage', function(result) {
+
+        console.log(socket.userData);
 
         console.log('=================================');
         console.log('NEW MESSAGE!!');
@@ -57,10 +74,10 @@ io.on('connection', function(socket) {
         message.save(function(err) {
             if (err) throw err;
 
-            // emit to everyone
-            io.emit('chatResult', result);
             console.log('New message added');
         });
+        // emit to everyone
+        io.emit('chatResult', result);
     });
 
     socket.on('setTyping', function(result) {
@@ -68,7 +85,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('disconnect', function() {
-        console.log('user disconnected');
+        console.log('user disconnected', socket.userData);
     });
 
 });

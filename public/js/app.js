@@ -7,6 +7,14 @@
     var socket = io();
 
     console.log('Welcome to our chat', username);
+
+    // new user
+    socket.on('newUserResult', function(user) {
+        console.log('hello world');
+        $('#users').append("<button type='button' class='list-group-item'>" + user.name + "</button>");
+    });
+
+
     // Submit form and emit chat message
     $('form').submit(function() {
         var post = {

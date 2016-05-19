@@ -23,19 +23,24 @@
     </nav>
 
     <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Join to Chat
-            </div>
-            <div class="panel-body">
-                <p>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Enter your name" id="username">
-                        <span class="input-group-btn">
-                          <button class="btn btn-success" type="button" id="join"><i class="fa fa-sign-in"></i> JOIN</button>
-                        </span>
+        <!-- Columns are always 50% wide, on mobile and desktop -->
+        <div class="row">
+            <div class="col-md-5 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Join to Chat
                     </div>
-                </p>
+                    <div class="panel-body">
+                        <p>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter your name" id="username">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="submit" id="join"><i class="fa fa-sign-in"></i> JOIN</button>
+                                </span>
+                            </div>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -43,6 +48,8 @@
 
     <script src="/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+
+    <script src="/socket.io-client/socket.io.js" charset="utf-8"></script>
     <script src="/js/login.js" charset="utf-8"></script>
 </body>
 

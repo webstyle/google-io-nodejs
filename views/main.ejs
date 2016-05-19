@@ -26,43 +26,63 @@
                 </a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/" id="logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="fa fa-trash-o"></i> Clear history</a></li>
+                        <li><a href="/" id="logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
 
+    <div class="margin-top"></div>
     <div class="container main">
         <div class="row">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <p>
-                        <ul id="messages" class="list-unstyled">
-                            <% for(var i=0; i < messages.length; i++) {%>
-                                <div class='media'>
-                                    <div class='media-left'><img class='media-object' src='/images/person.png' alt='' height='40'></div>
-                                    <div class='media-body'>
-                                        <h4 class='media-heading'><%= messages[i].username %></h4>
-                                        <p>
-                                            <%= messages[i].text %>
-                                        </p>
-                                        <p class="text-muted">
-                                            <%= messages[i].created_at %>
-                                        </p>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>
+                            <ul id="messages" class="list-unstyled">
+                                <% for(var i=0; i < messages.length; i++) {%>
+                                    <div class='media'>
+                                        <div class='media-left'><img class='media-object' src='/images/person.png' alt='' height='40'></div>
+                                        <div class='media-body'>
+                                            <h4 class='media-heading'><%= messages[i].username %></h4>
+                                            <p>
+                                                <%= messages[i].text %>
+                                            </p>
+                                            <p class="text-muted">
+                                                <%= messages[i].created_at %>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <% } %>
-                        </ul>
-                    </p>
+                                    <% } %>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="users">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Online list
+                        </div>
+                        <div class="list-group" id="users">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="sender">
-        <form class="container">
+        <form>
             <div class="input-group">
                 <p class="lead emoji-picker-container">
-                    <input placeholder="Send message" id="form" name="message" class="form-control" data-emojiable="true" />
+                    <input placeholder="Send message" id="form" name="message" class="form-control" data-emojiable="false" autocomplete="off" />
                 </p>
                 <span class="input-group-btn">
                   <button class="btn btn-primary" id="send" type="submit"><strong><i class="fa fa-paper-plane-o"></i> Send</button>
