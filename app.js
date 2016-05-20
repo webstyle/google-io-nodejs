@@ -23,7 +23,6 @@ app.use(express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
 app.get('/', function(req, res) {
     res.render('login');
 });
@@ -34,25 +33,44 @@ app.get('/chat', function(req, res) {
 
         res.render('main', {
             messages: results
+                //users: Users
         });
     });
 });
 
+
 // Sockets
 io.on('connection', function(socket) {
 
-    // new User
+    // Adding a new user
     socket.on('newUser', function(username) {
 
         var newUser = {
             id: uuid.v4(),
-            name: username
+            username: username
         }
-        socket.userData = newUser;
 
+        socket.userData = newUser;
         io.emit('newUserId', newUser);
     });
 
+    socket.on('existsUser', function(user) {
+        socket.userData = user;
+
+        var userExists = false;
+        Users.forEach(function(u) {
+            if (user.id == u.id) {
+                userExists = true;
+            }
+        });
+
+        if (!userExists) {
+            Users.push(user);
+        }
+
+        console.log('online: ', Users);
+        io.emit('usersOnline', Users);
+    });
 
     socket.on('chatMessage', function(result) {
 
@@ -80,12 +98,28 @@ io.on('connection', function(socket) {
         io.emit('chatResult', result);
     });
 
-    socket.on('setTyping', function(result) {
-        io.emit('typing', result);
+    socket.on('clear', function(result) {
+        Messages.remove({}, function(err) {
+            if (err) console.log(err);
+
+            io.emit('clearAll');
+        });
     });
 
     socket.on('disconnect', function() {
-        console.log('user disconnected', socket.userData);
+        console.log('users: ', Users);
+        //Delete user disconnected user from online users list
+        //Users.slice();
+        if ('userData' in socket) {
+            for (var i = 0; i < Users.length; i++) {
+                console.log('Users for off', Users[i]);
+                if (Users[i].username == socket.userData.username) {
+                    Users.splice(i);
+                    io.emit('usersOnline', Users);
+                }
+            }
+        }
+
     });
 
 });

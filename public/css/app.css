@@ -1,25 +1,20 @@
 .body {
-  background-color: #dadada;
+    background-color: #dadada;
 }
-
-.sender {
-  position: fixed;
-  z-index: 10000;
-  bottom: 10px;
-}
-
 .main {
-  margin-bottom: 70px;
+    margin-bottom: 70px;
 }
-
 textarea[name=message] {
     resize: none;
 }
-
 .margin-top {
-  margin-top: 60px;
+    margin-top: 60px;
 }
-
 .users {
-  position: fixed;
+    position: fixed;
+}
+form {
+    position: fixed;
+    bottom: 10px;
+    width: 90%;
 }

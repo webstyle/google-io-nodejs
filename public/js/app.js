@@ -1,5 +1,7 @@
 (function() {
     var username = localStorage.getItem('username') || null;
+    var id = localStorage.getItem('id');
+    var onlineUsers = [];
     if (!username) {
         window.location.href = '/';
     }
@@ -8,12 +10,25 @@
 
     console.log('Welcome to our chat', username);
 
-    // new user
-    socket.on('newUserResult', function(user) {
-        console.log('hello world');
-        $('#users').append("<button type='button' class='list-group-item'>" + user.name + "</button>");
+    // heart beating
+    socket.emit('existsUser', {
+        username: username,
+        id: id
     });
 
+    socket.on('usersOnline', function(users) {
+
+        $('#users').html('');
+
+        users.forEach(function(user) {
+            $('#users').append("<button type='button' id='" + user.id + "' class='list-group-item'><i class='fa fa-user'></i> " + user.username + "</button>");
+        });
+
+    });
+
+    socket.on('onlineUser', function(user) {
+        $('#users').append("<button type='button' id='" + user.id + "' class='list-group-item'>" + user.username + "</button>");
+    });
 
     // Submit form and emit chat message
     $('form').submit(function() {
@@ -45,6 +60,16 @@
         console.log(msg);
         scrollBottom();
         $("#messages").append("<div class='media'><div class='media-left'><img class='media-object' src='/images/person.png' alt='' height='40'></div><div class='media-body'><h4 class='media-heading'>" + msg.username + "</h4><p>" + msg.message + "</p</div></div><hr />");
+    });
+
+    //clear
+    $('#clear').click(function() {
+        socket.emit('clear');
+    });
+
+    // on clear
+    socket.on('clearAll', function() {
+        $('#messages').html('');
     });
 
     // logout
