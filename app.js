@@ -114,7 +114,7 @@ io.on('connection', function(socket) {
             for (var i = 0; i < Users.length; i++) {
                 console.log('Users for off', Users[i]);
                 if (Users[i].username == socket.userData.username) {
-                    Users.splice(i);
+                    Users.splice(i)
                     io.emit('usersOnline', Users);
                 }
             }
