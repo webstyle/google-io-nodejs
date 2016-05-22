@@ -43,24 +43,22 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <p>
-                            <ul id="messages" class="list-unstyled">
-                                <% for(var i=0; i < messages.length; i++) {%>
-                                    <div class='media'>
-                                        <div class='media-left'><img class='media-object' src='/images/person.png' alt='' height='40'></div>
-                                        <div class='media-body'>
-                                            <h4 class='media-heading'><%= messages[i].username %></h4>
-                                            <p>
-                                                <%= messages[i].text %>
-                                            </p>
-                                            <p class="text-muted">
-                                                <%= messages[i].created_at %>
-                                            </p>
-                                        </div>
+                        <ul id="messages" class="list-unstyled">
+                            <% for(var i=0; i < messages.length; i++) {%>
+                                <div class='media'>
+                                    <div class='media-left'><img class='media-object' src='/images/person.png' alt='' height='40'></div>
+                                    <div class='media-body'>
+                                        <h4 class='media-heading'><%= messages[i].username %></h4>
+                                        <p>
+                                            <%= messages[i].text %>
+                                        </p>
+                                        <p class="text-muted">
+                                            <%= messages[i].created_at %>
+                                        </p>
                                     </div>
-                                    <% } %>
-                            </ul>
-                        </p>
+                                </div>
+                                <% } %>
+                        </ul>
                     </div>
                 </div>
             </div>

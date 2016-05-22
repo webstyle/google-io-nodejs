@@ -107,14 +107,13 @@ io.on('connection', function(socket) {
     });
 
     socket.on('disconnect', function() {
-        console.log('users: ', Users);
         //Delete user disconnected user from online users list
         //Users.slice();
         if ('userData' in socket) {
             for (var i = 0; i < Users.length; i++) {
                 console.log('Users for off', Users[i]);
                 if (Users[i].username == socket.userData.username) {
-                    Users.splice(i)
+                    Users.splice(i);
                     io.emit('usersOnline', Users);
                 }
             }
