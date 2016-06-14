@@ -13,7 +13,7 @@ var Messages = require('./models/messages');
 var Users = [];
 
 //mongodb connection
-mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connect('mongodb://farrukh:qwerty@ds017688.mlab.com:17688/texnoman');
 
 // Static files
 app.use(express.static('bower_components'));
@@ -123,6 +123,6 @@ io.on('connection', function(socket) {
 
 });
 
-http.listen(3000, function() {
-    console.log('Example app listening on port 3000!');
+http.listen((process.env.PORT || 5000), function() {
+    console.log('Example app listening on port 5000!');
 });
