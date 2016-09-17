@@ -1,17 +1,20 @@
 .body {
-  background-color: #dadada;
+    background-color: #dadada;
 }
-
-.sender {
-  z-index: 10000;
-  bottom: 10px;
-  padding: 20px;
-}
-
 .main {
-  margin-bottom: 70px;
+    margin-bottom: 70px;
 }
-
 textarea[name=message] {
     resize: none;
+}
+.margin-top {
+    margin-top: 60px;
+}
+.users {
+    position: fixed;
+}
+form {
+    position: fixed;
+    bottom: 10px;
+    width: 90%;
 }
