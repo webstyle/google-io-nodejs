@@ -15,6 +15,10 @@ var Users = [];
 //mongodb connection
 mongoose.connect('mongodb://farrukh:qwerty@ds017688.mlab.com:17688/texnoman');
 
+app.use(function(req, res) {
+	console.log(req.url);
+});
+
 // Static files
 app.use(express.static('bower_components'));
 app.use(express.static('public'));
